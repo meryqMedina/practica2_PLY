@@ -14,7 +14,7 @@ class BinaryOpNode:
         self.izq = izq
         self.der = der
 
-class UnaryOpNode:  # Añadido para el menos unario de la ampliación
+class UnaryOpNode:  # Nodo añadido para la ampliación del menos unario
     def __init__(self, op, expr):
         self.op = op
         self.expr = expr
