@@ -1,0 +1,1104 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AND
+    BITWISE_AND
+    BITWISE_OR
+    BREAK
+    CLOSED_BRACKET
+    CLOSED_SQUARE_BRACKET
+    DO
+    END_PROGRAM
+    FLOAT
+    FOR
+    GREATER_EQUALS
+    INT
+    KW_REPEAT
+    LESS_EQUALS
+    NOT
+    NOT_EQUALS
+    OPEN_BRACKET
+    OPEN_SQUARE_BRACKET
+    OR
+    WHILE
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> lista_sentencias
+Rule 2     lista_sentencias -> lista_sentencias sentencia
+Rule 3     lista_sentencias -> sentencia
+Rule 4     sentencia -> ID ASSIGNMENT expresion SEMICOLON
+Rule 5     sentencia -> PRINT expresion SEMICOLON
+Rule 6     sentencia -> IF expresion COLON lista_sentencias ELSE COLON lista_sentencias ENDIF SEMICOLON
+Rule 7     sentencia -> IF expresion COLON lista_sentencias ENDIF SEMICOLON
+Rule 8     expresion -> expresion ADD expresion
+Rule 9     expresion -> expresion SUBTRACT expresion
+Rule 10    expresion -> expresion MULTIPLY expresion
+Rule 11    expresion -> expresion DIVIDE expresion
+Rule 12    expresion -> expresion REMAINDER expresion
+Rule 13    expresion -> expresion EQUALS expresion
+Rule 14    expresion -> expresion GREATER_THAN expresion
+Rule 15    expresion -> expresion LESS_THAN expresion
+Rule 16    expresion -> SUBTRACT expresion
+Rule 17    expresion -> OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS
+Rule 18    expresion -> LIT_INT
+Rule 19    expresion -> LIT_FLOAT
+Rule 20    expresion -> ID
+
+Terminals, with rules where they appear
+
+ADD                  : 8
+AND                  : 
+ASSIGNMENT           : 4
+BITWISE_AND          : 
+BITWISE_OR           : 
+BREAK                : 
+CLOSED_BRACKET       : 
+CLOSED_PARENTHESIS   : 17
+CLOSED_SQUARE_BRACKET : 
+COLON                : 6 6 7
+DIVIDE               : 11
+DO                   : 
+ELSE                 : 6
+ENDIF                : 6 7
+END_PROGRAM          : 
+EQUALS               : 13
+FLOAT                : 
+FOR                  : 
+GREATER_EQUALS       : 
+GREATER_THAN         : 14
+ID                   : 4 20
+IF                   : 6 7
+INT                  : 
+KW_REPEAT            : 
+LESS_EQUALS          : 
+LESS_THAN            : 15
+LIT_FLOAT            : 19
+LIT_INT              : 18
+MULTIPLY             : 10
+NOT                  : 
+NOT_EQUALS           : 
+OPEN_BRACKET         : 
+OPEN_PARENTHESIS     : 17
+OPEN_SQUARE_BRACKET  : 
+OR                   : 
+PRINT                : 5
+REMAINDER            : 12
+SEMICOLON            : 4 5 6 7
+SUBTRACT             : 9 16
+WHILE                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+expresion            : 4 5 6 7 8 8 9 9 10 10 11 11 12 12 13 13 14 14 15 15 16 17
+lista_sentencias     : 1 2 6 6 7
+programa             : 0
+sentencia            : 2 3
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . lista_sentencias
+    (2) lista_sentencias -> . lista_sentencias sentencia
+    (3) lista_sentencias -> . sentencia
+    (4) sentencia -> . ID ASSIGNMENT expresion SEMICOLON
+    (5) sentencia -> . PRINT expresion SEMICOLON
+    (6) sentencia -> . IF expresion COLON lista_sentencias ELSE COLON lista_sentencias ENDIF SEMICOLON
+    (7) sentencia -> . IF expresion COLON lista_sentencias ENDIF SEMICOLON
+
+    ID              shift and go to state 4
+    PRINT           shift and go to state 5
+    IF              shift and go to state 6
+
+    programa                       shift and go to state 1
+    lista_sentencias               shift and go to state 2
+    sentencia                      shift and go to state 3
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> lista_sentencias .
+    (2) lista_sentencias -> lista_sentencias . sentencia
+    (4) sentencia -> . ID ASSIGNMENT expresion SEMICOLON
+    (5) sentencia -> . PRINT expresion SEMICOLON
+    (6) sentencia -> . IF expresion COLON lista_sentencias ELSE COLON lista_sentencias ENDIF SEMICOLON
+    (7) sentencia -> . IF expresion COLON lista_sentencias ENDIF SEMICOLON
+
+    $end            reduce using rule 1 (programa -> lista_sentencias .)
+    ID              shift and go to state 4
+    PRINT           shift and go to state 5
+    IF              shift and go to state 6
+
+    sentencia                      shift and go to state 7
+
+state 3
+
+    (3) lista_sentencias -> sentencia .
+
+    ID              reduce using rule 3 (lista_sentencias -> sentencia .)
+    PRINT           reduce using rule 3 (lista_sentencias -> sentencia .)
+    IF              reduce using rule 3 (lista_sentencias -> sentencia .)
+    $end            reduce using rule 3 (lista_sentencias -> sentencia .)
+    ELSE            reduce using rule 3 (lista_sentencias -> sentencia .)
+    ENDIF           reduce using rule 3 (lista_sentencias -> sentencia .)
+
+
+state 4
+
+    (4) sentencia -> ID . ASSIGNMENT expresion SEMICOLON
+
+    ASSIGNMENT      shift and go to state 8
+
+
+state 5
+
+    (5) sentencia -> PRINT . expresion SEMICOLON
+    (8) expresion -> . expresion ADD expresion
+    (9) expresion -> . expresion SUBTRACT expresion
+    (10) expresion -> . expresion MULTIPLY expresion
+    (11) expresion -> . expresion DIVIDE expresion
+    (12) expresion -> . expresion REMAINDER expresion
+    (13) expresion -> . expresion EQUALS expresion
+    (14) expresion -> . expresion GREATER_THAN expresion
+    (15) expresion -> . expresion LESS_THAN expresion
+    (16) expresion -> . SUBTRACT expresion
+    (17) expresion -> . OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS
+    (18) expresion -> . LIT_INT
+    (19) expresion -> . LIT_FLOAT
+    (20) expresion -> . ID
+
+    SUBTRACT        shift and go to state 10
+    OPEN_PARENTHESIS shift and go to state 11
+    LIT_INT         shift and go to state 12
+    LIT_FLOAT       shift and go to state 13
+    ID              shift and go to state 14
+
+    expresion                      shift and go to state 9
+
+state 6
+
+    (6) sentencia -> IF . expresion COLON lista_sentencias ELSE COLON lista_sentencias ENDIF SEMICOLON
+    (7) sentencia -> IF . expresion COLON lista_sentencias ENDIF SEMICOLON
+    (8) expresion -> . expresion ADD expresion
+    (9) expresion -> . expresion SUBTRACT expresion
+    (10) expresion -> . expresion MULTIPLY expresion
+    (11) expresion -> . expresion DIVIDE expresion
+    (12) expresion -> . expresion REMAINDER expresion
+    (13) expresion -> . expresion EQUALS expresion
+    (14) expresion -> . expresion GREATER_THAN expresion
+    (15) expresion -> . expresion LESS_THAN expresion
+    (16) expresion -> . SUBTRACT expresion
+    (17) expresion -> . OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS
+    (18) expresion -> . LIT_INT
+    (19) expresion -> . LIT_FLOAT
+    (20) expresion -> . ID
+
+    SUBTRACT        shift and go to state 10
+    OPEN_PARENTHESIS shift and go to state 11
+    LIT_INT         shift and go to state 12
+    LIT_FLOAT       shift and go to state 13
+    ID              shift and go to state 14
+
+    expresion                      shift and go to state 15
+
+state 7
+
+    (2) lista_sentencias -> lista_sentencias sentencia .
+
+    ID              reduce using rule 2 (lista_sentencias -> lista_sentencias sentencia .)
+    PRINT           reduce using rule 2 (lista_sentencias -> lista_sentencias sentencia .)
+    IF              reduce using rule 2 (lista_sentencias -> lista_sentencias sentencia .)
+    $end            reduce using rule 2 (lista_sentencias -> lista_sentencias sentencia .)
+    ELSE            reduce using rule 2 (lista_sentencias -> lista_sentencias sentencia .)
+    ENDIF           reduce using rule 2 (lista_sentencias -> lista_sentencias sentencia .)
+
+
+state 8
+
+    (4) sentencia -> ID ASSIGNMENT . expresion SEMICOLON
+    (8) expresion -> . expresion ADD expresion
+    (9) expresion -> . expresion SUBTRACT expresion
+    (10) expresion -> . expresion MULTIPLY expresion
+    (11) expresion -> . expresion DIVIDE expresion
+    (12) expresion -> . expresion REMAINDER expresion
+    (13) expresion -> . expresion EQUALS expresion
+    (14) expresion -> . expresion GREATER_THAN expresion
+    (15) expresion -> . expresion LESS_THAN expresion
+    (16) expresion -> . SUBTRACT expresion
+    (17) expresion -> . OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS
+    (18) expresion -> . LIT_INT
+    (19) expresion -> . LIT_FLOAT
+    (20) expresion -> . ID
+
+    SUBTRACT        shift and go to state 10
+    OPEN_PARENTHESIS shift and go to state 11
+    LIT_INT         shift and go to state 12
+    LIT_FLOAT       shift and go to state 13
+    ID              shift and go to state 14
+
+    expresion                      shift and go to state 16
+
+state 9
+
+    (5) sentencia -> PRINT expresion . SEMICOLON
+    (8) expresion -> expresion . ADD expresion
+    (9) expresion -> expresion . SUBTRACT expresion
+    (10) expresion -> expresion . MULTIPLY expresion
+    (11) expresion -> expresion . DIVIDE expresion
+    (12) expresion -> expresion . REMAINDER expresion
+    (13) expresion -> expresion . EQUALS expresion
+    (14) expresion -> expresion . GREATER_THAN expresion
+    (15) expresion -> expresion . LESS_THAN expresion
+
+    SEMICOLON       shift and go to state 17
+    ADD             shift and go to state 18
+    SUBTRACT        shift and go to state 19
+    MULTIPLY        shift and go to state 20
+    DIVIDE          shift and go to state 21
+    REMAINDER       shift and go to state 22
+    EQUALS          shift and go to state 23
+    GREATER_THAN    shift and go to state 24
+    LESS_THAN       shift and go to state 25
+
+
+state 10
+
+    (16) expresion -> SUBTRACT . expresion
+    (8) expresion -> . expresion ADD expresion
+    (9) expresion -> . expresion SUBTRACT expresion
+    (10) expresion -> . expresion MULTIPLY expresion
+    (11) expresion -> . expresion DIVIDE expresion
+    (12) expresion -> . expresion REMAINDER expresion
+    (13) expresion -> . expresion EQUALS expresion
+    (14) expresion -> . expresion GREATER_THAN expresion
+    (15) expresion -> . expresion LESS_THAN expresion
+    (16) expresion -> . SUBTRACT expresion
+    (17) expresion -> . OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS
+    (18) expresion -> . LIT_INT
+    (19) expresion -> . LIT_FLOAT
+    (20) expresion -> . ID
+
+    SUBTRACT        shift and go to state 10
+    OPEN_PARENTHESIS shift and go to state 11
+    LIT_INT         shift and go to state 12
+    LIT_FLOAT       shift and go to state 13
+    ID              shift and go to state 14
+
+    expresion                      shift and go to state 26
+
+state 11
+
+    (17) expresion -> OPEN_PARENTHESIS . expresion CLOSED_PARENTHESIS
+    (8) expresion -> . expresion ADD expresion
+    (9) expresion -> . expresion SUBTRACT expresion
+    (10) expresion -> . expresion MULTIPLY expresion
+    (11) expresion -> . expresion DIVIDE expresion
+    (12) expresion -> . expresion REMAINDER expresion
+    (13) expresion -> . expresion EQUALS expresion
+    (14) expresion -> . expresion GREATER_THAN expresion
+    (15) expresion -> . expresion LESS_THAN expresion
+    (16) expresion -> . SUBTRACT expresion
+    (17) expresion -> . OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS
+    (18) expresion -> . LIT_INT
+    (19) expresion -> . LIT_FLOAT
+    (20) expresion -> . ID
+
+    SUBTRACT        shift and go to state 10
+    OPEN_PARENTHESIS shift and go to state 11
+    LIT_INT         shift and go to state 12
+    LIT_FLOAT       shift and go to state 13
+    ID              shift and go to state 14
+
+    expresion                      shift and go to state 27
+
+state 12
+
+    (18) expresion -> LIT_INT .
+
+    SEMICOLON       reduce using rule 18 (expresion -> LIT_INT .)
+    ADD             reduce using rule 18 (expresion -> LIT_INT .)
+    SUBTRACT        reduce using rule 18 (expresion -> LIT_INT .)
+    MULTIPLY        reduce using rule 18 (expresion -> LIT_INT .)
+    DIVIDE          reduce using rule 18 (expresion -> LIT_INT .)
+    REMAINDER       reduce using rule 18 (expresion -> LIT_INT .)
+    EQUALS          reduce using rule 18 (expresion -> LIT_INT .)
+    GREATER_THAN    reduce using rule 18 (expresion -> LIT_INT .)
+    LESS_THAN       reduce using rule 18 (expresion -> LIT_INT .)
+    COLON           reduce using rule 18 (expresion -> LIT_INT .)
+    CLOSED_PARENTHESIS reduce using rule 18 (expresion -> LIT_INT .)
+
+
+state 13
+
+    (19) expresion -> LIT_FLOAT .
+
+    SEMICOLON       reduce using rule 19 (expresion -> LIT_FLOAT .)
+    ADD             reduce using rule 19 (expresion -> LIT_FLOAT .)
+    SUBTRACT        reduce using rule 19 (expresion -> LIT_FLOAT .)
+    MULTIPLY        reduce using rule 19 (expresion -> LIT_FLOAT .)
+    DIVIDE          reduce using rule 19 (expresion -> LIT_FLOAT .)
+    REMAINDER       reduce using rule 19 (expresion -> LIT_FLOAT .)
+    EQUALS          reduce using rule 19 (expresion -> LIT_FLOAT .)
+    GREATER_THAN    reduce using rule 19 (expresion -> LIT_FLOAT .)
+    LESS_THAN       reduce using rule 19 (expresion -> LIT_FLOAT .)
+    COLON           reduce using rule 19 (expresion -> LIT_FLOAT .)
+    CLOSED_PARENTHESIS reduce using rule 19 (expresion -> LIT_FLOAT .)
+
+
+state 14
+
+    (20) expresion -> ID .
+
+    SEMICOLON       reduce using rule 20 (expresion -> ID .)
+    ADD             reduce using rule 20 (expresion -> ID .)
+    SUBTRACT        reduce using rule 20 (expresion -> ID .)
+    MULTIPLY        reduce using rule 20 (expresion -> ID .)
+    DIVIDE          reduce using rule 20 (expresion -> ID .)
+    REMAINDER       reduce using rule 20 (expresion -> ID .)
+    EQUALS          reduce using rule 20 (expresion -> ID .)
+    GREATER_THAN    reduce using rule 20 (expresion -> ID .)
+    LESS_THAN       reduce using rule 20 (expresion -> ID .)
+    COLON           reduce using rule 20 (expresion -> ID .)
+    CLOSED_PARENTHESIS reduce using rule 20 (expresion -> ID .)
+
+
+state 15
+
+    (6) sentencia -> IF expresion . COLON lista_sentencias ELSE COLON lista_sentencias ENDIF SEMICOLON
+    (7) sentencia -> IF expresion . COLON lista_sentencias ENDIF SEMICOLON
+    (8) expresion -> expresion . ADD expresion
+    (9) expresion -> expresion . SUBTRACT expresion
+    (10) expresion -> expresion . MULTIPLY expresion
+    (11) expresion -> expresion . DIVIDE expresion
+    (12) expresion -> expresion . REMAINDER expresion
+    (13) expresion -> expresion . EQUALS expresion
+    (14) expresion -> expresion . GREATER_THAN expresion
+    (15) expresion -> expresion . LESS_THAN expresion
+
+    COLON           shift and go to state 28
+    ADD             shift and go to state 18
+    SUBTRACT        shift and go to state 19
+    MULTIPLY        shift and go to state 20
+    DIVIDE          shift and go to state 21
+    REMAINDER       shift and go to state 22
+    EQUALS          shift and go to state 23
+    GREATER_THAN    shift and go to state 24
+    LESS_THAN       shift and go to state 25
+
+
+state 16
+
+    (4) sentencia -> ID ASSIGNMENT expresion . SEMICOLON
+    (8) expresion -> expresion . ADD expresion
+    (9) expresion -> expresion . SUBTRACT expresion
+    (10) expresion -> expresion . MULTIPLY expresion
+    (11) expresion -> expresion . DIVIDE expresion
+    (12) expresion -> expresion . REMAINDER expresion
+    (13) expresion -> expresion . EQUALS expresion
+    (14) expresion -> expresion . GREATER_THAN expresion
+    (15) expresion -> expresion . LESS_THAN expresion
+
+    SEMICOLON       shift and go to state 29
+    ADD             shift and go to state 18
+    SUBTRACT        shift and go to state 19
+    MULTIPLY        shift and go to state 20
+    DIVIDE          shift and go to state 21
+    REMAINDER       shift and go to state 22
+    EQUALS          shift and go to state 23
+    GREATER_THAN    shift and go to state 24
+    LESS_THAN       shift and go to state 25
+
+
+state 17
+
+    (5) sentencia -> PRINT expresion SEMICOLON .
+
+    ID              reduce using rule 5 (sentencia -> PRINT expresion SEMICOLON .)
+    PRINT           reduce using rule 5 (sentencia -> PRINT expresion SEMICOLON .)
+    IF              reduce using rule 5 (sentencia -> PRINT expresion SEMICOLON .)
+    $end            reduce using rule 5 (sentencia -> PRINT expresion SEMICOLON .)
+    ELSE            reduce using rule 5 (sentencia -> PRINT expresion SEMICOLON .)
+    ENDIF           reduce using rule 5 (sentencia -> PRINT expresion SEMICOLON .)
+
+
+state 18
+
+    (8) expresion -> expresion ADD . expresion
+    (8) expresion -> . expresion ADD expresion
+    (9) expresion -> . expresion SUBTRACT expresion
+    (10) expresion -> . expresion MULTIPLY expresion
+    (11) expresion -> . expresion DIVIDE expresion
+    (12) expresion -> . expresion REMAINDER expresion
+    (13) expresion -> . expresion EQUALS expresion
+    (14) expresion -> . expresion GREATER_THAN expresion
+    (15) expresion -> . expresion LESS_THAN expresion
+    (16) expresion -> . SUBTRACT expresion
+    (17) expresion -> . OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS
+    (18) expresion -> . LIT_INT
+    (19) expresion -> . LIT_FLOAT
+    (20) expresion -> . ID
+
+    SUBTRACT        shift and go to state 10
+    OPEN_PARENTHESIS shift and go to state 11
+    LIT_INT         shift and go to state 12
+    LIT_FLOAT       shift and go to state 13
+    ID              shift and go to state 14
+
+    expresion                      shift and go to state 30
+
+state 19
+
+    (9) expresion -> expresion SUBTRACT . expresion
+    (8) expresion -> . expresion ADD expresion
+    (9) expresion -> . expresion SUBTRACT expresion
+    (10) expresion -> . expresion MULTIPLY expresion
+    (11) expresion -> . expresion DIVIDE expresion
+    (12) expresion -> . expresion REMAINDER expresion
+    (13) expresion -> . expresion EQUALS expresion
+    (14) expresion -> . expresion GREATER_THAN expresion
+    (15) expresion -> . expresion LESS_THAN expresion
+    (16) expresion -> . SUBTRACT expresion
+    (17) expresion -> . OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS
+    (18) expresion -> . LIT_INT
+    (19) expresion -> . LIT_FLOAT
+    (20) expresion -> . ID
+
+    SUBTRACT        shift and go to state 10
+    OPEN_PARENTHESIS shift and go to state 11
+    LIT_INT         shift and go to state 12
+    LIT_FLOAT       shift and go to state 13
+    ID              shift and go to state 14
+
+    expresion                      shift and go to state 31
+
+state 20
+
+    (10) expresion -> expresion MULTIPLY . expresion
+    (8) expresion -> . expresion ADD expresion
+    (9) expresion -> . expresion SUBTRACT expresion
+    (10) expresion -> . expresion MULTIPLY expresion
+    (11) expresion -> . expresion DIVIDE expresion
+    (12) expresion -> . expresion REMAINDER expresion
+    (13) expresion -> . expresion EQUALS expresion
+    (14) expresion -> . expresion GREATER_THAN expresion
+    (15) expresion -> . expresion LESS_THAN expresion
+    (16) expresion -> . SUBTRACT expresion
+    (17) expresion -> . OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS
+    (18) expresion -> . LIT_INT
+    (19) expresion -> . LIT_FLOAT
+    (20) expresion -> . ID
+
+    SUBTRACT        shift and go to state 10
+    OPEN_PARENTHESIS shift and go to state 11
+    LIT_INT         shift and go to state 12
+    LIT_FLOAT       shift and go to state 13
+    ID              shift and go to state 14
+
+    expresion                      shift and go to state 32
+
+state 21
+
+    (11) expresion -> expresion DIVIDE . expresion
+    (8) expresion -> . expresion ADD expresion
+    (9) expresion -> . expresion SUBTRACT expresion
+    (10) expresion -> . expresion MULTIPLY expresion
+    (11) expresion -> . expresion DIVIDE expresion
+    (12) expresion -> . expresion REMAINDER expresion
+    (13) expresion -> . expresion EQUALS expresion
+    (14) expresion -> . expresion GREATER_THAN expresion
+    (15) expresion -> . expresion LESS_THAN expresion
+    (16) expresion -> . SUBTRACT expresion
+    (17) expresion -> . OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS
+    (18) expresion -> . LIT_INT
+    (19) expresion -> . LIT_FLOAT
+    (20) expresion -> . ID
+
+    SUBTRACT        shift and go to state 10
+    OPEN_PARENTHESIS shift and go to state 11
+    LIT_INT         shift and go to state 12
+    LIT_FLOAT       shift and go to state 13
+    ID              shift and go to state 14
+
+    expresion                      shift and go to state 33
+
+state 22
+
+    (12) expresion -> expresion REMAINDER . expresion
+    (8) expresion -> . expresion ADD expresion
+    (9) expresion -> . expresion SUBTRACT expresion
+    (10) expresion -> . expresion MULTIPLY expresion
+    (11) expresion -> . expresion DIVIDE expresion
+    (12) expresion -> . expresion REMAINDER expresion
+    (13) expresion -> . expresion EQUALS expresion
+    (14) expresion -> . expresion GREATER_THAN expresion
+    (15) expresion -> . expresion LESS_THAN expresion
+    (16) expresion -> . SUBTRACT expresion
+    (17) expresion -> . OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS
+    (18) expresion -> . LIT_INT
+    (19) expresion -> . LIT_FLOAT
+    (20) expresion -> . ID
+
+    SUBTRACT        shift and go to state 10
+    OPEN_PARENTHESIS shift and go to state 11
+    LIT_INT         shift and go to state 12
+    LIT_FLOAT       shift and go to state 13
+    ID              shift and go to state 14
+
+    expresion                      shift and go to state 34
+
+state 23
+
+    (13) expresion -> expresion EQUALS . expresion
+    (8) expresion -> . expresion ADD expresion
+    (9) expresion -> . expresion SUBTRACT expresion
+    (10) expresion -> . expresion MULTIPLY expresion
+    (11) expresion -> . expresion DIVIDE expresion
+    (12) expresion -> . expresion REMAINDER expresion
+    (13) expresion -> . expresion EQUALS expresion
+    (14) expresion -> . expresion GREATER_THAN expresion
+    (15) expresion -> . expresion LESS_THAN expresion
+    (16) expresion -> . SUBTRACT expresion
+    (17) expresion -> . OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS
+    (18) expresion -> . LIT_INT
+    (19) expresion -> . LIT_FLOAT
+    (20) expresion -> . ID
+
+    SUBTRACT        shift and go to state 10
+    OPEN_PARENTHESIS shift and go to state 11
+    LIT_INT         shift and go to state 12
+    LIT_FLOAT       shift and go to state 13
+    ID              shift and go to state 14
+
+    expresion                      shift and go to state 35
+
+state 24
+
+    (14) expresion -> expresion GREATER_THAN . expresion
+    (8) expresion -> . expresion ADD expresion
+    (9) expresion -> . expresion SUBTRACT expresion
+    (10) expresion -> . expresion MULTIPLY expresion
+    (11) expresion -> . expresion DIVIDE expresion
+    (12) expresion -> . expresion REMAINDER expresion
+    (13) expresion -> . expresion EQUALS expresion
+    (14) expresion -> . expresion GREATER_THAN expresion
+    (15) expresion -> . expresion LESS_THAN expresion
+    (16) expresion -> . SUBTRACT expresion
+    (17) expresion -> . OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS
+    (18) expresion -> . LIT_INT
+    (19) expresion -> . LIT_FLOAT
+    (20) expresion -> . ID
+
+    SUBTRACT        shift and go to state 10
+    OPEN_PARENTHESIS shift and go to state 11
+    LIT_INT         shift and go to state 12
+    LIT_FLOAT       shift and go to state 13
+    ID              shift and go to state 14
+
+    expresion                      shift and go to state 36
+
+state 25
+
+    (15) expresion -> expresion LESS_THAN . expresion
+    (8) expresion -> . expresion ADD expresion
+    (9) expresion -> . expresion SUBTRACT expresion
+    (10) expresion -> . expresion MULTIPLY expresion
+    (11) expresion -> . expresion DIVIDE expresion
+    (12) expresion -> . expresion REMAINDER expresion
+    (13) expresion -> . expresion EQUALS expresion
+    (14) expresion -> . expresion GREATER_THAN expresion
+    (15) expresion -> . expresion LESS_THAN expresion
+    (16) expresion -> . SUBTRACT expresion
+    (17) expresion -> . OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS
+    (18) expresion -> . LIT_INT
+    (19) expresion -> . LIT_FLOAT
+    (20) expresion -> . ID
+
+    SUBTRACT        shift and go to state 10
+    OPEN_PARENTHESIS shift and go to state 11
+    LIT_INT         shift and go to state 12
+    LIT_FLOAT       shift and go to state 13
+    ID              shift and go to state 14
+
+    expresion                      shift and go to state 37
+
+state 26
+
+    (16) expresion -> SUBTRACT expresion .
+    (8) expresion -> expresion . ADD expresion
+    (9) expresion -> expresion . SUBTRACT expresion
+    (10) expresion -> expresion . MULTIPLY expresion
+    (11) expresion -> expresion . DIVIDE expresion
+    (12) expresion -> expresion . REMAINDER expresion
+    (13) expresion -> expresion . EQUALS expresion
+    (14) expresion -> expresion . GREATER_THAN expresion
+    (15) expresion -> expresion . LESS_THAN expresion
+
+    SEMICOLON       reduce using rule 16 (expresion -> SUBTRACT expresion .)
+    ADD             reduce using rule 16 (expresion -> SUBTRACT expresion .)
+    SUBTRACT        reduce using rule 16 (expresion -> SUBTRACT expresion .)
+    MULTIPLY        reduce using rule 16 (expresion -> SUBTRACT expresion .)
+    DIVIDE          reduce using rule 16 (expresion -> SUBTRACT expresion .)
+    REMAINDER       reduce using rule 16 (expresion -> SUBTRACT expresion .)
+    EQUALS          reduce using rule 16 (expresion -> SUBTRACT expresion .)
+    GREATER_THAN    reduce using rule 16 (expresion -> SUBTRACT expresion .)
+    LESS_THAN       reduce using rule 16 (expresion -> SUBTRACT expresion .)
+    COLON           reduce using rule 16 (expresion -> SUBTRACT expresion .)
+    CLOSED_PARENTHESIS reduce using rule 16 (expresion -> SUBTRACT expresion .)
+
+  ! ADD             [ shift and go to state 18 ]
+  ! SUBTRACT        [ shift and go to state 19 ]
+  ! MULTIPLY        [ shift and go to state 20 ]
+  ! DIVIDE          [ shift and go to state 21 ]
+  ! REMAINDER       [ shift and go to state 22 ]
+  ! EQUALS          [ shift and go to state 23 ]
+  ! GREATER_THAN    [ shift and go to state 24 ]
+  ! LESS_THAN       [ shift and go to state 25 ]
+
+
+state 27
+
+    (17) expresion -> OPEN_PARENTHESIS expresion . CLOSED_PARENTHESIS
+    (8) expresion -> expresion . ADD expresion
+    (9) expresion -> expresion . SUBTRACT expresion
+    (10) expresion -> expresion . MULTIPLY expresion
+    (11) expresion -> expresion . DIVIDE expresion
+    (12) expresion -> expresion . REMAINDER expresion
+    (13) expresion -> expresion . EQUALS expresion
+    (14) expresion -> expresion . GREATER_THAN expresion
+    (15) expresion -> expresion . LESS_THAN expresion
+
+    CLOSED_PARENTHESIS shift and go to state 38
+    ADD             shift and go to state 18
+    SUBTRACT        shift and go to state 19
+    MULTIPLY        shift and go to state 20
+    DIVIDE          shift and go to state 21
+    REMAINDER       shift and go to state 22
+    EQUALS          shift and go to state 23
+    GREATER_THAN    shift and go to state 24
+    LESS_THAN       shift and go to state 25
+
+
+state 28
+
+    (6) sentencia -> IF expresion COLON . lista_sentencias ELSE COLON lista_sentencias ENDIF SEMICOLON
+    (7) sentencia -> IF expresion COLON . lista_sentencias ENDIF SEMICOLON
+    (2) lista_sentencias -> . lista_sentencias sentencia
+    (3) lista_sentencias -> . sentencia
+    (4) sentencia -> . ID ASSIGNMENT expresion SEMICOLON
+    (5) sentencia -> . PRINT expresion SEMICOLON
+    (6) sentencia -> . IF expresion COLON lista_sentencias ELSE COLON lista_sentencias ENDIF SEMICOLON
+    (7) sentencia -> . IF expresion COLON lista_sentencias ENDIF SEMICOLON
+
+    ID              shift and go to state 4
+    PRINT           shift and go to state 5
+    IF              shift and go to state 6
+
+    lista_sentencias               shift and go to state 39
+    sentencia                      shift and go to state 3
+
+state 29
+
+    (4) sentencia -> ID ASSIGNMENT expresion SEMICOLON .
+
+    ID              reduce using rule 4 (sentencia -> ID ASSIGNMENT expresion SEMICOLON .)
+    PRINT           reduce using rule 4 (sentencia -> ID ASSIGNMENT expresion SEMICOLON .)
+    IF              reduce using rule 4 (sentencia -> ID ASSIGNMENT expresion SEMICOLON .)
+    $end            reduce using rule 4 (sentencia -> ID ASSIGNMENT expresion SEMICOLON .)
+    ELSE            reduce using rule 4 (sentencia -> ID ASSIGNMENT expresion SEMICOLON .)
+    ENDIF           reduce using rule 4 (sentencia -> ID ASSIGNMENT expresion SEMICOLON .)
+
+
+state 30
+
+    (8) expresion -> expresion ADD expresion .
+    (8) expresion -> expresion . ADD expresion
+    (9) expresion -> expresion . SUBTRACT expresion
+    (10) expresion -> expresion . MULTIPLY expresion
+    (11) expresion -> expresion . DIVIDE expresion
+    (12) expresion -> expresion . REMAINDER expresion
+    (13) expresion -> expresion . EQUALS expresion
+    (14) expresion -> expresion . GREATER_THAN expresion
+    (15) expresion -> expresion . LESS_THAN expresion
+
+    SEMICOLON       reduce using rule 8 (expresion -> expresion ADD expresion .)
+    ADD             reduce using rule 8 (expresion -> expresion ADD expresion .)
+    SUBTRACT        reduce using rule 8 (expresion -> expresion ADD expresion .)
+    EQUALS          reduce using rule 8 (expresion -> expresion ADD expresion .)
+    GREATER_THAN    reduce using rule 8 (expresion -> expresion ADD expresion .)
+    LESS_THAN       reduce using rule 8 (expresion -> expresion ADD expresion .)
+    COLON           reduce using rule 8 (expresion -> expresion ADD expresion .)
+    CLOSED_PARENTHESIS reduce using rule 8 (expresion -> expresion ADD expresion .)
+    MULTIPLY        shift and go to state 20
+    DIVIDE          shift and go to state 21
+    REMAINDER       shift and go to state 22
+
+  ! MULTIPLY        [ reduce using rule 8 (expresion -> expresion ADD expresion .) ]
+  ! DIVIDE          [ reduce using rule 8 (expresion -> expresion ADD expresion .) ]
+  ! REMAINDER       [ reduce using rule 8 (expresion -> expresion ADD expresion .) ]
+  ! ADD             [ shift and go to state 18 ]
+  ! SUBTRACT        [ shift and go to state 19 ]
+  ! EQUALS          [ shift and go to state 23 ]
+  ! GREATER_THAN    [ shift and go to state 24 ]
+  ! LESS_THAN       [ shift and go to state 25 ]
+
+
+state 31
+
+    (9) expresion -> expresion SUBTRACT expresion .
+    (8) expresion -> expresion . ADD expresion
+    (9) expresion -> expresion . SUBTRACT expresion
+    (10) expresion -> expresion . MULTIPLY expresion
+    (11) expresion -> expresion . DIVIDE expresion
+    (12) expresion -> expresion . REMAINDER expresion
+    (13) expresion -> expresion . EQUALS expresion
+    (14) expresion -> expresion . GREATER_THAN expresion
+    (15) expresion -> expresion . LESS_THAN expresion
+
+    SEMICOLON       reduce using rule 9 (expresion -> expresion SUBTRACT expresion .)
+    ADD             reduce using rule 9 (expresion -> expresion SUBTRACT expresion .)
+    SUBTRACT        reduce using rule 9 (expresion -> expresion SUBTRACT expresion .)
+    EQUALS          reduce using rule 9 (expresion -> expresion SUBTRACT expresion .)
+    GREATER_THAN    reduce using rule 9 (expresion -> expresion SUBTRACT expresion .)
+    LESS_THAN       reduce using rule 9 (expresion -> expresion SUBTRACT expresion .)
+    COLON           reduce using rule 9 (expresion -> expresion SUBTRACT expresion .)
+    CLOSED_PARENTHESIS reduce using rule 9 (expresion -> expresion SUBTRACT expresion .)
+    MULTIPLY        shift and go to state 20
+    DIVIDE          shift and go to state 21
+    REMAINDER       shift and go to state 22
+
+  ! MULTIPLY        [ reduce using rule 9 (expresion -> expresion SUBTRACT expresion .) ]
+  ! DIVIDE          [ reduce using rule 9 (expresion -> expresion SUBTRACT expresion .) ]
+  ! REMAINDER       [ reduce using rule 9 (expresion -> expresion SUBTRACT expresion .) ]
+  ! ADD             [ shift and go to state 18 ]
+  ! SUBTRACT        [ shift and go to state 19 ]
+  ! EQUALS          [ shift and go to state 23 ]
+  ! GREATER_THAN    [ shift and go to state 24 ]
+  ! LESS_THAN       [ shift and go to state 25 ]
+
+
+state 32
+
+    (10) expresion -> expresion MULTIPLY expresion .
+    (8) expresion -> expresion . ADD expresion
+    (9) expresion -> expresion . SUBTRACT expresion
+    (10) expresion -> expresion . MULTIPLY expresion
+    (11) expresion -> expresion . DIVIDE expresion
+    (12) expresion -> expresion . REMAINDER expresion
+    (13) expresion -> expresion . EQUALS expresion
+    (14) expresion -> expresion . GREATER_THAN expresion
+    (15) expresion -> expresion . LESS_THAN expresion
+
+    SEMICOLON       reduce using rule 10 (expresion -> expresion MULTIPLY expresion .)
+    ADD             reduce using rule 10 (expresion -> expresion MULTIPLY expresion .)
+    SUBTRACT        reduce using rule 10 (expresion -> expresion MULTIPLY expresion .)
+    MULTIPLY        reduce using rule 10 (expresion -> expresion MULTIPLY expresion .)
+    DIVIDE          reduce using rule 10 (expresion -> expresion MULTIPLY expresion .)
+    REMAINDER       reduce using rule 10 (expresion -> expresion MULTIPLY expresion .)
+    EQUALS          reduce using rule 10 (expresion -> expresion MULTIPLY expresion .)
+    GREATER_THAN    reduce using rule 10 (expresion -> expresion MULTIPLY expresion .)
+    LESS_THAN       reduce using rule 10 (expresion -> expresion MULTIPLY expresion .)
+    COLON           reduce using rule 10 (expresion -> expresion MULTIPLY expresion .)
+    CLOSED_PARENTHESIS reduce using rule 10 (expresion -> expresion MULTIPLY expresion .)
+
+  ! ADD             [ shift and go to state 18 ]
+  ! SUBTRACT        [ shift and go to state 19 ]
+  ! MULTIPLY        [ shift and go to state 20 ]
+  ! DIVIDE          [ shift and go to state 21 ]
+  ! REMAINDER       [ shift and go to state 22 ]
+  ! EQUALS          [ shift and go to state 23 ]
+  ! GREATER_THAN    [ shift and go to state 24 ]
+  ! LESS_THAN       [ shift and go to state 25 ]
+
+
+state 33
+
+    (11) expresion -> expresion DIVIDE expresion .
+    (8) expresion -> expresion . ADD expresion
+    (9) expresion -> expresion . SUBTRACT expresion
+    (10) expresion -> expresion . MULTIPLY expresion
+    (11) expresion -> expresion . DIVIDE expresion
+    (12) expresion -> expresion . REMAINDER expresion
+    (13) expresion -> expresion . EQUALS expresion
+    (14) expresion -> expresion . GREATER_THAN expresion
+    (15) expresion -> expresion . LESS_THAN expresion
+
+    SEMICOLON       reduce using rule 11 (expresion -> expresion DIVIDE expresion .)
+    ADD             reduce using rule 11 (expresion -> expresion DIVIDE expresion .)
+    SUBTRACT        reduce using rule 11 (expresion -> expresion DIVIDE expresion .)
+    MULTIPLY        reduce using rule 11 (expresion -> expresion DIVIDE expresion .)
+    DIVIDE          reduce using rule 11 (expresion -> expresion DIVIDE expresion .)
+    REMAINDER       reduce using rule 11 (expresion -> expresion DIVIDE expresion .)
+    EQUALS          reduce using rule 11 (expresion -> expresion DIVIDE expresion .)
+    GREATER_THAN    reduce using rule 11 (expresion -> expresion DIVIDE expresion .)
+    LESS_THAN       reduce using rule 11 (expresion -> expresion DIVIDE expresion .)
+    COLON           reduce using rule 11 (expresion -> expresion DIVIDE expresion .)
+    CLOSED_PARENTHESIS reduce using rule 11 (expresion -> expresion DIVIDE expresion .)
+
+  ! ADD             [ shift and go to state 18 ]
+  ! SUBTRACT        [ shift and go to state 19 ]
+  ! MULTIPLY        [ shift and go to state 20 ]
+  ! DIVIDE          [ shift and go to state 21 ]
+  ! REMAINDER       [ shift and go to state 22 ]
+  ! EQUALS          [ shift and go to state 23 ]
+  ! GREATER_THAN    [ shift and go to state 24 ]
+  ! LESS_THAN       [ shift and go to state 25 ]
+
+
+state 34
+
+    (12) expresion -> expresion REMAINDER expresion .
+    (8) expresion -> expresion . ADD expresion
+    (9) expresion -> expresion . SUBTRACT expresion
+    (10) expresion -> expresion . MULTIPLY expresion
+    (11) expresion -> expresion . DIVIDE expresion
+    (12) expresion -> expresion . REMAINDER expresion
+    (13) expresion -> expresion . EQUALS expresion
+    (14) expresion -> expresion . GREATER_THAN expresion
+    (15) expresion -> expresion . LESS_THAN expresion
+
+    SEMICOLON       reduce using rule 12 (expresion -> expresion REMAINDER expresion .)
+    ADD             reduce using rule 12 (expresion -> expresion REMAINDER expresion .)
+    SUBTRACT        reduce using rule 12 (expresion -> expresion REMAINDER expresion .)
+    MULTIPLY        reduce using rule 12 (expresion -> expresion REMAINDER expresion .)
+    DIVIDE          reduce using rule 12 (expresion -> expresion REMAINDER expresion .)
+    REMAINDER       reduce using rule 12 (expresion -> expresion REMAINDER expresion .)
+    EQUALS          reduce using rule 12 (expresion -> expresion REMAINDER expresion .)
+    GREATER_THAN    reduce using rule 12 (expresion -> expresion REMAINDER expresion .)
+    LESS_THAN       reduce using rule 12 (expresion -> expresion REMAINDER expresion .)
+    COLON           reduce using rule 12 (expresion -> expresion REMAINDER expresion .)
+    CLOSED_PARENTHESIS reduce using rule 12 (expresion -> expresion REMAINDER expresion .)
+
+  ! ADD             [ shift and go to state 18 ]
+  ! SUBTRACT        [ shift and go to state 19 ]
+  ! MULTIPLY        [ shift and go to state 20 ]
+  ! DIVIDE          [ shift and go to state 21 ]
+  ! REMAINDER       [ shift and go to state 22 ]
+  ! EQUALS          [ shift and go to state 23 ]
+  ! GREATER_THAN    [ shift and go to state 24 ]
+  ! LESS_THAN       [ shift and go to state 25 ]
+
+
+state 35
+
+    (13) expresion -> expresion EQUALS expresion .
+    (8) expresion -> expresion . ADD expresion
+    (9) expresion -> expresion . SUBTRACT expresion
+    (10) expresion -> expresion . MULTIPLY expresion
+    (11) expresion -> expresion . DIVIDE expresion
+    (12) expresion -> expresion . REMAINDER expresion
+    (13) expresion -> expresion . EQUALS expresion
+    (14) expresion -> expresion . GREATER_THAN expresion
+    (15) expresion -> expresion . LESS_THAN expresion
+
+    SEMICOLON       reduce using rule 13 (expresion -> expresion EQUALS expresion .)
+    EQUALS          reduce using rule 13 (expresion -> expresion EQUALS expresion .)
+    GREATER_THAN    reduce using rule 13 (expresion -> expresion EQUALS expresion .)
+    LESS_THAN       reduce using rule 13 (expresion -> expresion EQUALS expresion .)
+    COLON           reduce using rule 13 (expresion -> expresion EQUALS expresion .)
+    CLOSED_PARENTHESIS reduce using rule 13 (expresion -> expresion EQUALS expresion .)
+    ADD             shift and go to state 18
+    SUBTRACT        shift and go to state 19
+    MULTIPLY        shift and go to state 20
+    DIVIDE          shift and go to state 21
+    REMAINDER       shift and go to state 22
+
+  ! ADD             [ reduce using rule 13 (expresion -> expresion EQUALS expresion .) ]
+  ! SUBTRACT        [ reduce using rule 13 (expresion -> expresion EQUALS expresion .) ]
+  ! MULTIPLY        [ reduce using rule 13 (expresion -> expresion EQUALS expresion .) ]
+  ! DIVIDE          [ reduce using rule 13 (expresion -> expresion EQUALS expresion .) ]
+  ! REMAINDER       [ reduce using rule 13 (expresion -> expresion EQUALS expresion .) ]
+  ! EQUALS          [ shift and go to state 23 ]
+  ! GREATER_THAN    [ shift and go to state 24 ]
+  ! LESS_THAN       [ shift and go to state 25 ]
+
+
+state 36
+
+    (14) expresion -> expresion GREATER_THAN expresion .
+    (8) expresion -> expresion . ADD expresion
+    (9) expresion -> expresion . SUBTRACT expresion
+    (10) expresion -> expresion . MULTIPLY expresion
+    (11) expresion -> expresion . DIVIDE expresion
+    (12) expresion -> expresion . REMAINDER expresion
+    (13) expresion -> expresion . EQUALS expresion
+    (14) expresion -> expresion . GREATER_THAN expresion
+    (15) expresion -> expresion . LESS_THAN expresion
+
+    SEMICOLON       reduce using rule 14 (expresion -> expresion GREATER_THAN expresion .)
+    EQUALS          reduce using rule 14 (expresion -> expresion GREATER_THAN expresion .)
+    GREATER_THAN    reduce using rule 14 (expresion -> expresion GREATER_THAN expresion .)
+    LESS_THAN       reduce using rule 14 (expresion -> expresion GREATER_THAN expresion .)
+    COLON           reduce using rule 14 (expresion -> expresion GREATER_THAN expresion .)
+    CLOSED_PARENTHESIS reduce using rule 14 (expresion -> expresion GREATER_THAN expresion .)
+    ADD             shift and go to state 18
+    SUBTRACT        shift and go to state 19
+    MULTIPLY        shift and go to state 20
+    DIVIDE          shift and go to state 21
+    REMAINDER       shift and go to state 22
+
+  ! ADD             [ reduce using rule 14 (expresion -> expresion GREATER_THAN expresion .) ]
+  ! SUBTRACT        [ reduce using rule 14 (expresion -> expresion GREATER_THAN expresion .) ]
+  ! MULTIPLY        [ reduce using rule 14 (expresion -> expresion GREATER_THAN expresion .) ]
+  ! DIVIDE          [ reduce using rule 14 (expresion -> expresion GREATER_THAN expresion .) ]
+  ! REMAINDER       [ reduce using rule 14 (expresion -> expresion GREATER_THAN expresion .) ]
+  ! EQUALS          [ shift and go to state 23 ]
+  ! GREATER_THAN    [ shift and go to state 24 ]
+  ! LESS_THAN       [ shift and go to state 25 ]
+
+
+state 37
+
+    (15) expresion -> expresion LESS_THAN expresion .
+    (8) expresion -> expresion . ADD expresion
+    (9) expresion -> expresion . SUBTRACT expresion
+    (10) expresion -> expresion . MULTIPLY expresion
+    (11) expresion -> expresion . DIVIDE expresion
+    (12) expresion -> expresion . REMAINDER expresion
+    (13) expresion -> expresion . EQUALS expresion
+    (14) expresion -> expresion . GREATER_THAN expresion
+    (15) expresion -> expresion . LESS_THAN expresion
+
+    SEMICOLON       reduce using rule 15 (expresion -> expresion LESS_THAN expresion .)
+    EQUALS          reduce using rule 15 (expresion -> expresion LESS_THAN expresion .)
+    GREATER_THAN    reduce using rule 15 (expresion -> expresion LESS_THAN expresion .)
+    LESS_THAN       reduce using rule 15 (expresion -> expresion LESS_THAN expresion .)
+    COLON           reduce using rule 15 (expresion -> expresion LESS_THAN expresion .)
+    CLOSED_PARENTHESIS reduce using rule 15 (expresion -> expresion LESS_THAN expresion .)
+    ADD             shift and go to state 18
+    SUBTRACT        shift and go to state 19
+    MULTIPLY        shift and go to state 20
+    DIVIDE          shift and go to state 21
+    REMAINDER       shift and go to state 22
+
+  ! ADD             [ reduce using rule 15 (expresion -> expresion LESS_THAN expresion .) ]
+  ! SUBTRACT        [ reduce using rule 15 (expresion -> expresion LESS_THAN expresion .) ]
+  ! MULTIPLY        [ reduce using rule 15 (expresion -> expresion LESS_THAN expresion .) ]
+  ! DIVIDE          [ reduce using rule 15 (expresion -> expresion LESS_THAN expresion .) ]
+  ! REMAINDER       [ reduce using rule 15 (expresion -> expresion LESS_THAN expresion .) ]
+  ! EQUALS          [ shift and go to state 23 ]
+  ! GREATER_THAN    [ shift and go to state 24 ]
+  ! LESS_THAN       [ shift and go to state 25 ]
+
+
+state 38
+
+    (17) expresion -> OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS .
+
+    SEMICOLON       reduce using rule 17 (expresion -> OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS .)
+    ADD             reduce using rule 17 (expresion -> OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS .)
+    SUBTRACT        reduce using rule 17 (expresion -> OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS .)
+    MULTIPLY        reduce using rule 17 (expresion -> OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS .)
+    DIVIDE          reduce using rule 17 (expresion -> OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS .)
+    REMAINDER       reduce using rule 17 (expresion -> OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS .)
+    EQUALS          reduce using rule 17 (expresion -> OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS .)
+    GREATER_THAN    reduce using rule 17 (expresion -> OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS .)
+    LESS_THAN       reduce using rule 17 (expresion -> OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS .)
+    COLON           reduce using rule 17 (expresion -> OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS .)
+    CLOSED_PARENTHESIS reduce using rule 17 (expresion -> OPEN_PARENTHESIS expresion CLOSED_PARENTHESIS .)
+
+
+state 39
+
+    (6) sentencia -> IF expresion COLON lista_sentencias . ELSE COLON lista_sentencias ENDIF SEMICOLON
+    (7) sentencia -> IF expresion COLON lista_sentencias . ENDIF SEMICOLON
+    (2) lista_sentencias -> lista_sentencias . sentencia
+    (4) sentencia -> . ID ASSIGNMENT expresion SEMICOLON
+    (5) sentencia -> . PRINT expresion SEMICOLON
+    (6) sentencia -> . IF expresion COLON lista_sentencias ELSE COLON lista_sentencias ENDIF SEMICOLON
+    (7) sentencia -> . IF expresion COLON lista_sentencias ENDIF SEMICOLON
+
+    ELSE            shift and go to state 40
+    ENDIF           shift and go to state 41
+    ID              shift and go to state 4
+    PRINT           shift and go to state 5
+    IF              shift and go to state 6
+
+    sentencia                      shift and go to state 7
+
+state 40
+
+    (6) sentencia -> IF expresion COLON lista_sentencias ELSE . COLON lista_sentencias ENDIF SEMICOLON
+
+    COLON           shift and go to state 42
+
+
+state 41
+
+    (7) sentencia -> IF expresion COLON lista_sentencias ENDIF . SEMICOLON
+
+    SEMICOLON       shift and go to state 43
+
+
+state 42
+
+    (6) sentencia -> IF expresion COLON lista_sentencias ELSE COLON . lista_sentencias ENDIF SEMICOLON
+    (2) lista_sentencias -> . lista_sentencias sentencia
+    (3) lista_sentencias -> . sentencia
+    (4) sentencia -> . ID ASSIGNMENT expresion SEMICOLON
+    (5) sentencia -> . PRINT expresion SEMICOLON
+    (6) sentencia -> . IF expresion COLON lista_sentencias ELSE COLON lista_sentencias ENDIF SEMICOLON
+    (7) sentencia -> . IF expresion COLON lista_sentencias ENDIF SEMICOLON
+
+    ID              shift and go to state 4
+    PRINT           shift and go to state 5
+    IF              shift and go to state 6
+
+    lista_sentencias               shift and go to state 44
+    sentencia                      shift and go to state 3
+
+state 43
+
+    (7) sentencia -> IF expresion COLON lista_sentencias ENDIF SEMICOLON .
+
+    ID              reduce using rule 7 (sentencia -> IF expresion COLON lista_sentencias ENDIF SEMICOLON .)
+    PRINT           reduce using rule 7 (sentencia -> IF expresion COLON lista_sentencias ENDIF SEMICOLON .)
+    IF              reduce using rule 7 (sentencia -> IF expresion COLON lista_sentencias ENDIF SEMICOLON .)
+    $end            reduce using rule 7 (sentencia -> IF expresion COLON lista_sentencias ENDIF SEMICOLON .)
+    ELSE            reduce using rule 7 (sentencia -> IF expresion COLON lista_sentencias ENDIF SEMICOLON .)
+    ENDIF           reduce using rule 7 (sentencia -> IF expresion COLON lista_sentencias ENDIF SEMICOLON .)
+
+
+state 44
+
+    (6) sentencia -> IF expresion COLON lista_sentencias ELSE COLON lista_sentencias . ENDIF SEMICOLON
+    (2) lista_sentencias -> lista_sentencias . sentencia
+    (4) sentencia -> . ID ASSIGNMENT expresion SEMICOLON
+    (5) sentencia -> . PRINT expresion SEMICOLON
+    (6) sentencia -> . IF expresion COLON lista_sentencias ELSE COLON lista_sentencias ENDIF SEMICOLON
+    (7) sentencia -> . IF expresion COLON lista_sentencias ENDIF SEMICOLON
+
+    ENDIF           shift and go to state 45
+    ID              shift and go to state 4
+    PRINT           shift and go to state 5
+    IF              shift and go to state 6
+
+    sentencia                      shift and go to state 7
+
+state 45
+
+    (6) sentencia -> IF expresion COLON lista_sentencias ELSE COLON lista_sentencias ENDIF . SEMICOLON
+
+    SEMICOLON       shift and go to state 46
+
+
+state 46
+
+    (6) sentencia -> IF expresion COLON lista_sentencias ELSE COLON lista_sentencias ENDIF SEMICOLON .
+
+    ID              reduce using rule 6 (sentencia -> IF expresion COLON lista_sentencias ELSE COLON lista_sentencias ENDIF SEMICOLON .)
+    PRINT           reduce using rule 6 (sentencia -> IF expresion COLON lista_sentencias ELSE COLON lista_sentencias ENDIF SEMICOLON .)
+    IF              reduce using rule 6 (sentencia -> IF expresion COLON lista_sentencias ELSE COLON lista_sentencias ENDIF SEMICOLON .)
+    $end            reduce using rule 6 (sentencia -> IF expresion COLON lista_sentencias ELSE COLON lista_sentencias ENDIF SEMICOLON .)
+    ELSE            reduce using rule 6 (sentencia -> IF expresion COLON lista_sentencias ELSE COLON lista_sentencias ENDIF SEMICOLON .)
+    ENDIF           reduce using rule 6 (sentencia -> IF expresion COLON lista_sentencias ELSE COLON lista_sentencias ENDIF SEMICOLON .)
+
