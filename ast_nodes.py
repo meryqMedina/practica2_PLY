@@ -1,3 +1,4 @@
+# ast_nodes.py - Clases del árbol de sintaxis abstracta (AST)
 
 class NumberNode:
     def __init__(self, valor):
@@ -9,11 +10,19 @@ class VarNode:
 
 class BinaryOpNode:
     def __init__(self, op, izq, der):
-        self.op, self.izq, self.der = op, izq, der
+        self.op = op
+        self.izq = izq
+        self.der = der
+
+class UnaryOpNode:  # Añadido para la ampliación (ej. menos unario)
+    def __init__(self, op, expr):
+        self.op = op
+        self.expr = expr
 
 class AssignNode:
     def __init__(self, nombre, expr):
-        self.nombre, self.expr = nombre, expr
+        self.nombre = nombre
+        self.expr = expr
 
 class PrintNode:
     def __init__(self, expr):
@@ -21,32 +30,37 @@ class PrintNode:
 
 class IfNode:
     def __init__(self, cond, entonces, si_no=None):
-        self.cond, self.entonces, self.si_no = cond, entonces, si_no
+        self.cond = cond
+        self.entonces = entonces
+        self.si_no = si_no
 
 def muestra(nodo, sangria=0):
-    s = '    ' * sangria
+    s = "    " * sangria
     if isinstance(nodo, list):
         for n in nodo:
             muestra(n, sangria)
     elif isinstance(nodo, NumberNode):
-        print(s + 'Número', nodo.valor)
+        print(s + "Número", nodo.valor)
     elif isinstance(nodo, VarNode):
-        print(s + 'Variable', nodo.nombre)
+        print(s + "Variable", nodo.nombre)
     elif isinstance(nodo, BinaryOpNode):
-        print(s + 'Operación', nodo.op)
+        print(s + "Operación", nodo.op)
         muestra(nodo.izq, sangria + 1)
         muestra(nodo.der, sangria + 1)
+    elif isinstance(nodo, UnaryOpNode):
+        print(s + "Operación Unaria", nodo.op)
+        muestra(nodo.expr, sangria + 1)
     elif isinstance(nodo, AssignNode):
-        print(s + 'Asignación', nodo.nombre)
+        print(s + "Asignación", nodo.nombre)
         muestra(nodo.expr, sangria + 1)
     elif isinstance(nodo, PrintNode):
-        print(s + 'Print')
+        print(s + "Print")
         muestra(nodo.expr, sangria + 1)
     elif isinstance(nodo, IfNode):
-        print(s + 'If')
+        print(s + "If")
         muestra(nodo.cond, sangria + 1)
-        print(s + 'Entonces')
+        print(s + "Entonces")
         muestra(nodo.entonces, sangria + 1)
         if nodo.si_no is not None:
-            print(s + 'Si no')
+            print(s + "Si no")
             muestra(nodo.si_no, sangria + 1)
