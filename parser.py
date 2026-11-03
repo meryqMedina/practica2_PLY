@@ -1,20 +1,14 @@
-"""Practica 2: analisis sintactico y construccion del AST con PLY yacc.
-
-Utiliza los nombres de tokens de la Practica 1 del Grupo 3.
-La construccion adicional elegida (apartado 3.6) es el modulo (%).
-"""
+"""Analizador sintactico de la practica 2."""
 import ply.yacc as yacc
 from analizador import tokens, lexer
 from ast_nodes import *
 
-# Orden de menor a mayor precedencia (apartado 3.3).
 precedence = (
     ('nonassoc', 'EQUALS', 'GREATER_THAN', 'LESS_THAN'),
     ('left', 'ADD', 'SUBTRACT'),
     ('left', 'MULTIPLY', 'DIVIDE', 'REMAINDER'),
 )
 
-# Simbolo inicial: lista de instrucciones.
 start = 'programa'
 hubo_error = False
 
@@ -89,10 +83,19 @@ def p_error(p):
     global hubo_error
     hubo_error = True
     if p is None:
-        print('Error sintactico: fin inesperado del programa (falta algo, por ejemplo ENDIF).')
+        print('Error en la sintaxis: el programa termina antes de tiempo. '
+              'Puede faltar un punto y coma (;), una expresion o ENDIF.')
     else:
-        print('Error sintactico: token %s, valor %r, linea %d' %
-              (p.type, p.value, p.lineno))
+        if p.type == 'COLON':
+            explicacion = 'Puede faltar una expresion antes de los dos puntos (:).'
+        elif p.type == 'SEMICOLON':
+            explicacion = 'Puede faltar una expresion antes del punto y coma (;).'
+        elif p.type in ('ELSE', 'ENDIF'):
+            explicacion = 'Revisa las instrucciones del IF y sus separadores.'
+        else:
+            explicacion = 'Puede faltar algun simbolo o haber una instruccion mal escrita.'
+        print('Error en la sintaxis, linea %d: token %s, valor %r. %s' %
+              (p.lineno, p.type, p.value, explicacion))
 
 
 analizador_sintactico = yacc.yacc(debug=False, write_tables=False)
@@ -104,7 +107,7 @@ def analizar(codigo):
     lexer.lineno = 1
     resultado = analizador_sintactico.parse(codigo, lexer=lexer)
     if hubo_error or resultado is None:
-        print('No se genera AST: programa con errores sintacticos.')
+        print('No se ha podido crear el arbol por un error de sintaxis.')
         return None
     muestra(resultado)
     return resultado
@@ -121,6 +124,7 @@ IF total > (unidades + 30) :
 ELSE :
     PRINT 0;
 ENDIF;'''),
+        ('Arbol de la asignacion total', 'total = precio * unidades - 3;'),
         ('Precedencia: suma y multiplicacion', 'x = 2 + 3 * 4;'),
         ('Precedencia: resta por la izquierda', 'x = 10 - 3 - 2;'),
         ('Comparacion encadenada: debe fallar', 'x = a < b < c;'),
@@ -130,7 +134,9 @@ ENDIF;'''),
         ('Error: condicion incompleta', 'IF x > : PRINT x; ENDIF;'),
     ]
     for nombre, codigo in pruebas:
-        print('\n' + '=' * 60)
+        print()
         print(nombre)
-        print('=' * 60)
+        print('Codigo:')
+        print(codigo)
+        print('Resultado:')
         analizar(codigo)

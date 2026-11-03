@@ -1,35 +1,27 @@
-"""Clases del arbol AST del apartado 3.1 de la Practica 2."""
-
 
 class NumberNode:
     def __init__(self, valor):
         self.valor = valor
 
-
 class VarNode:
     def __init__(self, nombre):
         self.nombre = nombre
-
 
 class BinaryOpNode:
     def __init__(self, op, izq, der):
         self.op, self.izq, self.der = op, izq, der
 
-
 class AssignNode:
     def __init__(self, nombre, expr):
         self.nombre, self.expr = nombre, expr
-
 
 class PrintNode:
     def __init__(self, expr):
         self.expr = expr
 
-
 class IfNode:
     def __init__(self, cond, entonces, si_no=None):
         self.cond, self.entonces, self.si_no = cond, entonces, si_no
-
 
 def muestra(nodo, sangria=0):
     s = '    ' * sangria
